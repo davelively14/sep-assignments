@@ -1,0 +1,15 @@
+1. What is Spatial Locality and why does it benefit performance?
+
+Spatial Locality refers to storing data in memory that is close in terms of space (adjacent memory addresses, disk sectors, etc.). When a request is made for data not in the cache, the CPU will load chunks of physically data from RAM into the cache. If the data being requested is stored sequentially, then it's more likely that the CPU will load all of the data to the cache in less reads from the RAM.
+
+2. Benchmark results
+
+                      user      system     total      real
+Array, 10k:         0.010000   0.000000   0.010000 (  0.001533)
+LList, 10k:         0.000000   0.000000   0.000000 (  0.002968)
+
+Array, 5k access:   0.000000   0.000000   0.000000 (  0.000001)
+LList, 5k access:   0.000000   0.000000   0.000000 (  0.001164)
+
+Array, 5k delete:   0.000000   0.000000   0.000000 (  0.000005)
+LList, 5k delete:   0.000000   0.000000   0.000000 (  0.001191)
