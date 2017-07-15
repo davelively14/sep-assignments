@@ -138,4 +138,17 @@ RSpec.describe LinkedList, type: Class do
       expect(llist.tail).to be_nil
     end
   end
+
+  describe "#length" do
+    it "returns correct length" do
+      expect(llist.length).to eq 1
+
+      llist.add_to_tail(Node.new("k2", "v2"))
+      expect(llist.length).to eq 2
+
+      llist.remove_front
+      llist.remove_front
+      expect(llist.length).to eq 0
+    end
+  end
 end
