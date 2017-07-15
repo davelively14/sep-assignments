@@ -52,6 +52,20 @@ RSpec.describe SeparateChaining, type: Class do
       expect(star_wars_movies["Star Wars: The Empire Strikes Back"]).to eq "Number Five"
       expect(star_wars_movies["Star Wars: Return of the Jedi"]).to eq "Number Six"
     end
+
+    it "sets the value of key to value with no resizing needed" do
+      star_wars_movies["Star Wars: The Phantom Menace"] = "Number One"
+      star_wars_movies["Star Wars: Attack of the Clones"] = "Number Two"
+      star_wars_movies["Star Wars: Revenge of the Sith"] = "Number Three"
+      star_wars_movies["Star Wars: A New Hope"] = "Number Four"
+      star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
+
+      expect(star_wars_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
+      expect(star_wars_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"
+      expect(star_wars_movies["Star Wars: Revenge of the Sith"]).to eq "Number Three"
+      expect(star_wars_movies["Star Wars: A New Hope"]).to eq "Number Four"
+      expect(star_wars_movies["Star Wars: The Empire Strikes Back"]).to eq "Number Five"
+    end
   end
 
   describe "#load_factor" do
@@ -65,7 +79,7 @@ RSpec.describe SeparateChaining, type: Class do
 
       # Load factor should be .5 when two items are added
       expect(h.load_factor).to eq 0.5
-      h["keytwo"] = "value"
+      h["keytwo"] = "value2"
 
       # Load factor goes down to .375 (3/8) since when third item is added, load factor goes to .75
       # then the resize is triggered and load factor is recalculated
