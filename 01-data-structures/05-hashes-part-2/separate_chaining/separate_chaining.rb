@@ -15,7 +15,7 @@ class SeparateChaining
     if !@items[true_index]
       @items[true_index] = LinkedList.new(Node.new(key, value))
     else
-      add_to_llist(@items[true_index], key, value)
+      @items[true_index].add_to_tail(Node.new(key, value))
     end
 
     if load_factor > @max_load_factor
@@ -69,19 +69,6 @@ class SeparateChaining
   end
 
   private
-
-  # If the key value pair doesn't already exist, will add it to the end of the chain
-  def add_to_llist(llist, key, value)
-    current_node = llist.head
-    exists = false
-
-    while current_node
-      exists = true if current_node.value == value && current_node.key == key
-      current_node = current_node.next
-    end
-
-    llist.add_to_tail(Node.new(key, value)) if !exists
-  end
 
   def return_from_llist(llist, key)
     current_node = llist.head
