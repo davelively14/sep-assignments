@@ -78,13 +78,29 @@ RSpec.describe OpenAddressing, type: Class do
       movies["A New Hope"] = "Average"
       movies["Empire Strikes Back"] = "Excellent"
       movies["Return of the Jedi"] = "The Best"
-      puts movies.items.each {|item| puts item.value if item}
       movies.resize
-      puts movies.items.each {|item| puts item.value if item}
       expect(movies.size).to eq 12
       expect(movies["A New Hope"]).to eq "Average"
       expect(movies["Empire Strikes Back"]).to eq "Excellent"
       expect(movies["Return of the Jedi"]).to eq "The Best"
+    end
+  end
+
+  describe "#load_factor" do
+    it "returns correct number" do
+      hash = OpenAddressing.new(1)
+      hash["k1"] = "v"
+      expect(hash.load_factor).to eq 1
+    end
+
+    it "returns correct number after resize" do
+      hash = OpenAddressing.new(1)
+      hash["k1"] = "v"
+      hash["k2"] = "b"
+      expect(hash.load_factor).to eq 1
+
+      hash["k3"] = "a"
+      expect(hash.load_factor).to eq 0.75
     end
   end
 end

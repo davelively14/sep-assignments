@@ -57,6 +57,14 @@ class OpenAddressing
     @items = new_array
   end
 
+  def load_factor
+    count = 0
+
+    @items.each {|item| count += 1 if item}
+
+    return count.to_f / size
+  end
+
   private
 
   def put_item(arr, i, key, value)
