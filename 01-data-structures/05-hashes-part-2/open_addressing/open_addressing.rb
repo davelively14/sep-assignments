@@ -65,6 +65,22 @@ class OpenAddressing
     return count.to_f / size
   end
 
+  def print
+    str = "Open Addressing method. Load factor: #{load_factor}\n"
+
+    for i in 0..(@items.length - 1) do
+      if @items[i]
+        str += "{key: #{@items[i].key}, value: #{@items[i].value}}"
+      else
+        str += "<empty>"
+      end
+
+      str += ",\n" if (@items.length - 1) != i
+    end
+
+    return str
+  end
+
   private
 
   def put_item(arr, i, key, value)
