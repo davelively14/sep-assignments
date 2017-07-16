@@ -68,6 +68,20 @@ class SeparateChaining
     @items = new_array
   end
 
+  def print
+    str = "Separate Chaining method. Load factor: #{load_factor}\n"
+
+    @items.each do |item|
+      if item
+        str += "[#{item.print}]\n"
+      else
+        str += "[]\n"
+      end
+    end
+
+    return str
+  end
+
   private
 
   def return_from_llist(llist, key)
