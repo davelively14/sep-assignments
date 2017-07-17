@@ -173,4 +173,21 @@ RSpec.describe BinarySearchTree, type: Class do
        expect { tree.printf }.to output(expected_output).to_stdout
      }
   end
+
+  describe "#find_parent" do
+    it "will return correct parent" do
+      tree.insert(root, pacific_rim)
+      expect(tree.find_parent(root, "Pacific Rim").title).to eq root.title
+    end
+
+    it "will return nil if does not exist" do
+      tree.insert(root, pacific_rim)
+      expect(tree.find_parent(root, "Braveheart")).to eq nil
+    end
+
+    it "will return nil if root is the query" do
+      tree.insert(root, pacific_rim)
+      expect(tree.find_parent(root, "The Matrix")).to eq "root"
+    end
+  end
 end
