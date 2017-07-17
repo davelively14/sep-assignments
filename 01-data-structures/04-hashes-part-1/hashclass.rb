@@ -13,6 +13,8 @@ class HashClass
       resize
     end
 
+    true_index = index(key, size)
+
     new_item = HashItem.new(key, value)
     @items[true_index] = new_item
   end
