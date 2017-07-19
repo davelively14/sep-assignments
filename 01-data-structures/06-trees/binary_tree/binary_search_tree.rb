@@ -46,7 +46,8 @@ class BinarySearchTree
   end
 
   # Recursive Breadth First Search
-  def printf(children=nil)
+  # NOTE Opted not do a recursive BFS...because that's unnecessarily complex.
+  def printf
     queue = [@root]
     str = ""
 
