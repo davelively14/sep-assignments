@@ -16,7 +16,6 @@ class BinarySearchTree
   end
 
   # Recursive Depth First Search
-  # TODO: refactor the root
   def find(root, data)
     return root if root && root.title == data
 
@@ -38,9 +37,6 @@ class BinarySearchTree
         min.left = @root.left
         min.right = @root.right if @root.right != min
         @root = min
-        puts @root
-        puts @root.left
-        puts @root.right
       else
         @root = @root.left
       end
@@ -51,6 +47,17 @@ class BinarySearchTree
 
   # Recursive Breadth First Search
   def printf(children=nil)
+    queue = [@root]
+    str = ""
+
+    while queue != []
+      current = queue.shift
+      str << "#{current.title}: #{current.rating}\n"
+      queue.push(current.left) if current.left
+      queue.push(current.right) if current.right
+    end
+
+    puts str
   end
 
   def return_min_node(root)
