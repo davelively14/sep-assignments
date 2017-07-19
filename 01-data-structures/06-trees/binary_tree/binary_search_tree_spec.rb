@@ -101,6 +101,14 @@ RSpec.describe BinarySearchTree, type: Class do
       expect(tree.delete(root, nil)).to eq nil
     end
 
+    it "properly deletes a root" do
+      tree.insert(root, hope)
+      tree.delete(root, root.title)
+      expect(tree.root).to eq hope
+      expect(tree.find(hope, hope.title)).to eq hope
+      expect(tree.find(hope, root.title)).to eq nil
+    end
+
     it "properly deletes a left node" do
       tree.insert(root, hope)
       tree.delete(root, hope.title)
@@ -174,20 +182,11 @@ RSpec.describe BinarySearchTree, type: Class do
      }
   end
 
-  describe "#find_parent" do
-    it "will return correct parent" do
-      tree.insert(root, pacific_rim)
-      expect(tree.find_parent(root, "Pacific Rim").title).to eq root.title
-    end
-
-    it "will return nil if does not exist" do
-      tree.insert(root, pacific_rim)
-      expect(tree.find_parent(root, "Braveheart")).to eq nil
-    end
-
-    it "will return nil if root is the query" do
-      tree.insert(root, pacific_rim)
-      expect(tree.find_parent(root, "The Matrix")).to eq "root"
+  describe "#return_min_node" do
+    it "will return min value" do
+      tree.insert(root, martian)
+      tree.insert(root, district)
+      expect(tree.return_min_node(martian)).to eq district
     end
   end
 end
