@@ -95,4 +95,64 @@ RSpec.describe BinaryHeap, type: Class do
       expect(tree.parent(2)).to eq 0
     end
   end
+
+  describe "#find_index" do
+    it "returns correct index" do
+      tree.insert(martian)
+      expect(tree.find_index("The Martian")).to eq 1
+    end
+  end
+
+  describe "#left and #right" do
+    it "returns left and right indices" do
+      tree.insert(hope)
+      tree.insert(empire)
+      expect(tree.left(0)).to eq 1
+      expect(tree.right(0)).to eq 2
+
+      tree.insert(jedi)
+      tree.insert(donnie)
+      expect(tree.left(1)).to eq 3
+      expect(tree.right(1)).to eq 4
+    end
+
+    it "returns nil if no left or right" do
+      expect(tree.left(0)).to eq nil
+      expect(tree.right(0)).to eq nil
+    end
+  end
+
+  describe "#delete" do
+    it "deletes correct node" do
+      tree.insert(braveheart)
+      expect(tree.items[0]).to eq braveheart
+      tree.delete("Braveheart")
+      expect(tree.items[0]).to eq root
+
+      tree.insert(braveheart)
+      tree.delete("The Matrix")
+      expect(tree.items[0]).to eq braveheart
+    end
+
+    it "reorganizes correctly" do
+      tree.insert(inception)
+      tree.insert(donnie)
+      tree.insert(braveheart)
+      tree.insert(empire)
+      tree.insert(mad_max_2)
+
+      expect(tree.items[1]).to eq donnie
+
+      tree.delete("Donnie Darko")
+
+      expect(tree.find("Donnie Darko")).to be_nil
+      expect(tree.items[1]).to eq root
+      expect(tree.items[tree.left(1)]).to eq mad_max_2
+      expect(tree.items[tree.right(1)]).to eq empire
+
+      tree.delete("Inception")
+
+      expect(tree.items[2]).to eq empire
+    end
+  end
 end

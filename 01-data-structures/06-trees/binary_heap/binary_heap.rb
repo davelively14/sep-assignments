@@ -40,6 +40,26 @@ class BinaryHeap
     return node
   end
 
+  def find_index(data)
+    index = 0
+
+    @items.each do |item|
+      break if item.title == data
+      index += 1
+    end
+
+    return index
+  end
+
+  def delete(data)
+    index = find_index(data)
+    swap(@size - 1, index)
+    @items.delete_at(@size - 1)
+    @size -= 1
+
+    check_down(index)
+  end
+
   def print
     str = ""
     @items.each { |item| str << "#{item.title}: #{item.rating}\n" }
@@ -53,7 +73,31 @@ class BinaryHeap
     @items[second] = temp
   end
 
+  def check_down(node_index)
+    left = left(node_index)
+    right = right(node_index)
+    return if !left && !right
+
+    lowest = left
+    lowest = right if left && right && @items[left].rating > @items[right].rating
+
+    if lowest && @items[node_index].rating > @items[lowest].rating
+      swap(lowest, node_index)
+      check_down(lowest)
+    end
+  end
+
   def parent(node_index)
     (node_index.to_f / 2).round - 1
+  end
+
+  def left(node_index)
+    left_index = (node_index * 2) + 1
+    left_index < @size ? left_index : nil
+  end
+
+  def right(node_index)
+    right_index = (node_index * 2) + 2
+    right_index < @size ? right_index : nil
   end
 end
