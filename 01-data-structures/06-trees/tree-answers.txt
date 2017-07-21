@@ -1,0 +1,39 @@
+1. Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
+
+** Min Binary Heap **
+Pacific Rim: 72
+Braveheart: 78
+Star Wars: Return of the Jedi: 80
+The Matrix: 87
+District 9: 90
+Star Wars: The Empire Strikes Back: 94
+Inception: 86
+Star Wars: A New Hope: 93
+The Shawshank Redemption: 91
+The Martian: 92
+Mad Max 2: The Road Warrior: 98
+
+** Binary Search Tree **
+The Matrix: 87
+Braveheart: 78
+Mad Max 2: The Road Warrior: 98
+Pacific Rim: 72
+Inception: 86
+District 9: 90
+Star Wars: Return of the Jedi: 80
+The Shawshank Redemption: 91
+The Martian: 92
+Star Wars: The Empire Strikes Back: 94
+Star Wars: A New Hope: 93
+
+2. Insert all numbers from 1 to 100000 into both Trees, then use Benchmark to compare performance:
+
+Insertion:
+                          user     system      total        real
+Binary Search Tree:     3.590000   0.010000   3.600000 (  3.594431)
+Min Binary Heap:        0.010000   0.000000   0.010000 (  0.009128)
+
+Find:
+                          user     system      total        real
+Binary Search Tree:     0.000000   0.000000   0.000000 (  0.000672)
+Min Binary Heap:        0.000000   0.000000   0.000000 (  0.000393)
