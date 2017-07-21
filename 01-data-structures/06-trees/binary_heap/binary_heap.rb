@@ -64,7 +64,6 @@ class BinaryHeap
     str = ""
     @items.each { |item| str << "#{item.title}: #{item.rating}\n" }
     puts str
-    return str
   end
 
   def swap(first, second)

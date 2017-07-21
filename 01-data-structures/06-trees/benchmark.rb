@@ -12,4 +12,8 @@ Benchmark.bm do |x|
   x.report("Min Binary Heap:      ") { n = 1; 10_000.times do; node = Node.new("#{n}", n); n += 1; mbh.insert(node); end }
   x.report("Binary Search Tree:   ") { bst.find(base_node, "5000") }
   x.report("Min Binary Heap:      ") { mbh.find("5000") }
+  x.report("Binary Search Tree:   ") { bst.delete(base_node, "5000") }
+  x.report("Min Binary Heap:      ") { mbh.delete("5000") }
+  x.report("Binary Search Tree:   ") { bst.printf }
+  x.report("Min Binary Heap:      ") { mbh.print }
 end
