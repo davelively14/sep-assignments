@@ -1,0 +1,7 @@
+2. Written Assignment: Explain why doubling the size of the underlying array of your HashClass may be a poor idea.
+
+Doubling the size of the array can get out hand pretty quickly. While it's not that noticeable when you double the an array of size 128 to 256, doubling in size from 16,384 to 32,768 and copying that data over would likely be an expensive operation.
+
+Also, as mentioned in the checkpoint, as we grow our array size we're likely to become more fragmented - more empty slots between occupied spots. That increases the time it takes to transverse the hash array and return the correct value.
+
+I have a feeling we'll get to this later, but I'd imagine a binary tree or some other graph could be a better option?
