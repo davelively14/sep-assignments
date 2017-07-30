@@ -101,6 +101,14 @@ RSpec.describe BinarySearchTree, type: Class do
       expect(tree.delete(root, nil)).to eq nil
     end
 
+    it "properly deletes a root" do
+      tree.insert(root, hope)
+      tree.delete(root, root.title)
+      expect(tree.root).to eq hope
+      expect(tree.find(hope, hope.title)).to eq hope
+      expect(tree.find(hope, root.title)).to eq nil
+    end
+
     it "properly deletes a left node" do
       tree.insert(root, hope)
       tree.delete(root, hope.title)
@@ -172,5 +180,13 @@ RSpec.describe BinarySearchTree, type: Class do
        tree.insert(root, hope)
        expect { tree.printf }.to output(expected_output).to_stdout
      }
+  end
+
+  describe "#return_min_node" do
+    it "will return min value" do
+      tree.insert(root, martian)
+      tree.insert(root, district)
+      expect(tree.return_min_node(martian)).to eq district
+    end
   end
 end

@@ -1,0 +1,59 @@
+1. Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
+
+** Min Binary Heap **
+Pacific Rim: 72
+Braveheart: 78
+Star Wars: Return of the Jedi: 80
+The Matrix: 87
+District 9: 90
+Star Wars: The Empire Strikes Back: 94
+Inception: 86
+Star Wars: A New Hope: 93
+The Shawshank Redemption: 91
+The Martian: 92
+Mad Max 2: The Road Warrior: 98
+
+** Binary Search Tree **
+The Matrix: 87
+Braveheart: 78
+Mad Max 2: The Road Warrior: 98
+Pacific Rim: 72
+Inception: 86
+District 9: 90
+Star Wars: Return of the Jedi: 80
+The Shawshank Redemption: 91
+The Martian: 92
+Star Wars: The Empire Strikes Back: 94
+Star Wars: A New Hope: 93
+
+2. Insert all numbers from 1 to 100000 into both Trees, then use Benchmark to compare performance:
+
+Insertion:
+                          user     system      total        real
+Binary Search Tree:     3.590000   0.010000   3.600000 (  3.594431)
+Min Binary Heap:        0.010000   0.000000   0.010000 (  0.009128)
+
+Find:
+                          user     system      total        real
+Binary Search Tree:     0.000000   0.000000   0.000000 (  0.000672)
+Min Binary Heap:        0.000000   0.000000   0.000000 (  0.000393)
+
+Deletion:
+                          user     system      total        real
+Binary Search Tree:     0.000000   0.000000   0.000000 (  0.000782)
+Min Binary Heap:        0.000000   0.000000   0.000000 (  0.000404)
+
+Print:
+                          user     system      total        real
+Binary Search Tree:     0.000000   0.000000   0.000000 (  0.006677)
+Min Binary Heap:        0.010000   0.000000   0.010000 (  0.005034)
+
+- When would you use a Binary Search Tree and why?
+According to the results, never. But that's likely because the implementation here is poor. It's extremely useful when data is being inserted, accessed, or removed frequently. They should allow for fast lookup of data, but unfortunately this project's #find method is required to search O(n) time instead of O(log n), so we really don't get to see any advantage of a BST.
+
+To explain further, we are tasked to search by the title param of the node, yet our BST is sorted by rating. If we searched by rating, then we would (in worst case scenario) only have to traverse the deepest branch of the tree since the left node will always be less and the right node will always be greater. But, since we're searching for the title, in worst case scenario (target is the farthest right leaf), we have to traverse the entire tree.
+
+- When would you use a Heap and why?
+When you need a sorted queue. Data is inserted at the very end and only increases in priority if it meets a certain condition. In this project, we use a min heap, meaning that the lowest ranked movie will be at the top of the heap (i.e. highest priority).
+
+This project's implementation is configured to keep track of the worst movie in our database. When we add a new movie to the end of the heap, if it is less than it's parent it will move up the heap. The worst movie in our database will always be at the 0 index. Deleting the item at the 0 index via #delete will bring the next worst movie to the top of the heap.s
